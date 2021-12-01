@@ -11,7 +11,7 @@ class Department(models.Model):
 
 class Doctor(models.Model):
     doctorID = models.AutoField(primary_key=True)
-    departmentID = models.ForeignKey(Department)
+    departmentID = models.ForeignKey(Department, on_delete=models.SET_NULL,null=True)
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
     email = models.CharField(max_length=320)

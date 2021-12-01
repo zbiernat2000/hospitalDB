@@ -1,0 +1,69 @@
+CREATE TABLE `hospital_admin_appointment` (`appointmentID` integer AUTO_INCREMENT NOT NULL PRIMARY KEY);
+
+CREATE TABLE `hospital_admin_department`
+    (`departmentID` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `departmentName` varchar(100) NOT NULL,
+    `budget` integer UNSIGNED NOT NULL CHECK (`budget` >= 0),
+    `size` integer UNSIGNED NOT NULL
+     CHECK (`size` >= 0));
+
+CREATE TABLE `hospital_admin_department`
+    (`departmentID` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `departmentName` varchar(100) NOT NULL,
+    `budget` integer UNSIGNED NOT NULL CHECK (`budget` >= 0),
+    `size` integer UNSIGNED NOT NULL
+    CHECK (`size` >= 0));
+
+CREATE TABLE `hospital_admin_patient`
+    (`patientID` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `first_name` varchar(25) NOT NULL,
+    `last_name` varchar(25) NOT NULL,
+    `email` varchar(320) NOT NULL,
+    `phone_number` integer UNSIGNED NOT
+    NULL CHECK (`phone_number` >= 0));
+
+
+CREATE TABLE `hospital_admin_procedure`
+    (`procedureID` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+     `procedure_name` varchar(100) NOT NULL);
+
+
+CREATE TABLE `hospital_admin_procedureorder`
+    (`procedure_orderID` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `appointmentID_id` integer NOT NULL,
+    `procedureID_id` integer NOT NULL);
+
+CREATE TABLE `hospital_admin_doctor`
+    (`doctorID` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `first_name` varchar(25) NOT NULL,
+    `last_name` varchar(25) NOT NULL,
+    `email` varchar(320) NOT NULL,
+    `phone_number` integer UNSIGNED NOT NULL CHECK (`phone_number` >= 0),
+    `pager_number` integer UNSIGNED NOT NULL CHECK (`pager_number` >= 0),
+    `salary` integer UNSIGNED NOT NULL CHECK (`salary` >= 0),
+    `departmentID_id` integer NULL);
+
+ALTER TABLE `hospital_admin_appointment`
+    ADD COLUMN `doctorID_id` integer NOT NULL ,
+    ADD CONSTRAINT `hospital_admin_appoi_doctorID_id_20ba3de3_fk_hospital_`
+    FOREIGN KEY (`doctorID_id`) REFERENCES `hospital_admin_doctor`(`doctorID`);
+
+ALTER TABLE `hospital_admin_appointment`
+    ADD COLUMN `patientID_id` integer NOT NULL ,
+    ADD CONSTRAINT `hospital_admin_appoi_patientID_id_ed17e37d_fk_hospital_`
+    FOREIGN KEY (`patientID_id`) REFERENCES `hospital_admin_patient`(`patientID`);
+
+
+ALTER TABLE `hospital_admin_procedureorder`
+    ADD CONSTRAINT `hospital_admin_proce_appointmentID_id_916617e5_fk_hospital_`
+    FOREIGN KEY (`appointmentID_id`) REFERENCES `hospital_admin_appointment` (`appointmentID`);
+
+ALTER TABLE `hospital_admin_procedureorder`
+    ADD CONSTRAINT `hospital_admin_proce_procedureID_id_0b93a4b3_fk_hospital_`
+    FOREIGN KEY (`procedureID_id`) REFERENCES `hospital_admin_procedure` (`procedureID`);
+
+
+ALTER TABLE `hospital_admin_doctor`
+    ADD CONSTRAINT `hospital_admin_docto_departmentID_id_9d681bd5_fk_hospital_`
+    FOREIGN KEY (`departmentID_id`)
+    REFERENCES `hospital_admin_department` (`departmentID`);
