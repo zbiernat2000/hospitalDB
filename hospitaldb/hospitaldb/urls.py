@@ -20,3 +20,4 @@ urlpatterns = [
     path('hospital_admin/', include('hospital_admin.urls')),
     path('admin/', admin.site.urls),
  ]
+# A comment is made.
