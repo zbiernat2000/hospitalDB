@@ -74,12 +74,13 @@ WSGI_APPLICATION = 'hospitaldb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# Access with cd hospitaldb cd hospital db python manage.py runserver
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hospitaldb',
         'USER': 'root',
-        'PASSWORD': 'password',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
     }
