@@ -1,0 +1,25 @@
+<ul>
+    <table>
+        <tr>
+            <th> First Name </th>
+            <th> Last Name </th>
+            <th> Email </th>
+            <th> Phone Number </th>
+            <th> Pager Number </th>
+            <th> Salary </th>
+            <th> ID </th>
+            <th> departmentID </th>
+
+        </tr>
+        </thead>
+        {% for doctor in doctorlist %}
+            <td> {{ doctor.first_name}}</td>
+            <td> {{ doctor.last_name}}</td>
+            <td> {{ doctor.email}}</td>
+            <td> {{ doctor.phone_number}}</td>
+            <td> {{ doctor.pager_number}}</td>
+            <td> {{ doctor.doctorID}}</td>
+            <td> {{ doctor.departmentID}}</td>
+        {% endfor %}
+    </table>
+</ul>
