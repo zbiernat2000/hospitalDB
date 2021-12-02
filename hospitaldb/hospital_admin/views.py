@@ -10,5 +10,7 @@ def index(request):
 #TODO do table to display doctor
 def doctors(request):
     doctorlist = Doctor.objects.all()
+    for i in doctorlist:
+        print(i.departmentID)
     context = {'doctorlist': doctorlist}
     return render(request, 'Doctors.html', context)
