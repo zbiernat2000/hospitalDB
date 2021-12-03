@@ -2,7 +2,7 @@ from django.http import HttpResponse
 
 
 from django.shortcuts import render, redirect
-
+# Unresolved reference issue with hospital.db and table names
 from hospitaldb.hospital_admin.forms import DepartmentForm
 from hospitaldb.hospital_admin.models import Department
 from hospitaldb.hospital_admin.models import DoctorForm
