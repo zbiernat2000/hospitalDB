@@ -1,6 +1,6 @@
 from django import forms
 
-from hospital_admin.models import Department, Doctor, Patient, Appointment, Procedure, ProcudreOrder
+from hospitaldb.hospital_admin.models import Department, Doctor, Patient, Appointment, Procedure, ProcudreOrder
 
 class DepartmentForm(forms.ModelForm):
     class Meta:
