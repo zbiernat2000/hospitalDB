@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Doctor Information</title>
+     {% load staticfiles %}
+    </head>
+<body>
+<form method="POST" class="post-form" action="/update/{{doctor.id}}">
+    {% csrf_token %}
+    <div class="container">
+
+<br>
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <h3>Update Details</h3>
+    </div>
+  </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Doctor Id:</label>
+    <div class="col-sm-4">
+        <input type="text" name="doid" id="id_doid" required maxlength="20" value="{{ doctor.doid }}"/>
+    </div>
+  </div>
+  <div class="form-group row">
+   <label class="col-sm-2 col-form-label">Doctor Name:</label>
+    <div class="col-sm-4">
+        <input type="text" name="doname" id="id_doname" required maxlength="100" value="{{ doctor.doname }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Employee Email:</label>
+    <div class="col-sm-4">
+        <input type="email" name="doemail" id="id_doemail" required maxlength="254" value="{{ doctor.doemail }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Employee Contact:</label>
+    <div class="col-sm-4">
+        <input type="text" name="docontact" id="id_docontact" required maxlength="15" value="{{ doctor.docontact }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <button type="submit" class="btn btn-success">Update</button>
+    </div>
+  </div>
+    </div>
+</form>
+</body>
+</html>
