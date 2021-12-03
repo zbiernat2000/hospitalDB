@@ -1,0 +1,33 @@
+<ul>
+    <table>
+        <tr>
+            <th> ID </th>
+            <th> First Name </th>
+            <th> Last Name </th>
+            <th> Email </th>
+            <th> Phone Number </th>
+            <th> Pager Number </th>
+            <th> Salary </th>
+            <th> departmentID </th>
+            <th> Update </th>
+            <th> Delete </th>
+        </tr>
+        </thead>
+        {% for doctor in doctorlist %}
+        <tr>
+            <td> {{ doctor.doctorID}}</td>
+            <td> {{ doctor.first_name}}</td>
+            <td> {{ doctor.last_name}}</td>
+            <td> {{ doctor.email}}</td>
+            <td> {{ doctor.phone_number}}</td>
+            <td> {{ doctor.pager_number}}</td>
+            <td> {{ doctor.salary}}</td>
+            <td> {{ doctor.departmentID.departmentName}}</td>
+            <td><button> Update </button></td>
+            <td><button> Delete </button></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</ul>
+<button>Create</button>

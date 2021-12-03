@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 
+
 from django.shortcuts import render, redirect
 
 from hospitaldb.hospital_admin.forms import DepartmentForm
@@ -46,3 +47,5 @@ def emp(request):
         return redirect('/show')
 
     # Test above first
+
+

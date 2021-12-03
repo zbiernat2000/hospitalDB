@@ -1,5 +1,6 @@
 from django import forms
 
+
 from hospitaldb.hospital_admin.models import Department, Doctor, Patient, Appointment, Procedure, ProcudreOrder
 
 class DepartmentForm(forms.ModelForm):
@@ -26,6 +27,3 @@ class ProcedureOrderForm(forms.ModelForm):
     class Meta:
         model = ProcudreOrder
         fields = '__all__'
-
-
-
