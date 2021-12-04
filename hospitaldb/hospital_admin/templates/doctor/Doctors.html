@@ -41,6 +41,9 @@
         {% endfor %}
     </table>
 </ul>
-<a class="btn btn-primary" href="/doctor_create">
+<td><a href="{% url 'doctor_create' %}">
     <button> Create</button>
+</a>
+<td><a href="{% url 'index'%}">
+    <button> Back</button>
 </a>
