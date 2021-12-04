@@ -1,0 +1,38 @@
+<ul>
+    <table>
+        <tr>
+            <th> ID</th>
+            <th> Name</th>
+            <th> Budget</th>
+            <th> Size</th>
+        </tr>
+        </thead>
+        {% for department in departmentlist %}
+        <tr>
+            <td> {{ department.departmentID}}</td>
+            <td> {{ department.departmentName}}</td>
+            <td> {{ department.budget}}</td>
+            <td> {{ department.size}}</td>
+
+            <td><a href="{% url 'department_update' department.departmentID %}">
+                <button> Update</button>
+            </a></td>
+            <!---TODO fix button placement ---->
+            <td><form action="{% url 'department_delete' department.departmentID %}" method="post">
+                {% csrf_token %}
+                <button type="submit"> Delete</button>
+            </form></td>
+            <td>
+                <button> View</button>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</ul>
+<td><a href="{% url 'department_create' %}">
+    <button> Create</button>
+</a>
+<td><a href="{% url 'index'%}">
+    <button> Back</button>
+</a>
