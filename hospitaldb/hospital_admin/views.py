@@ -1,51 +1,25 @@
 from django.http import HttpResponse
-
-
 from django.shortcuts import render, redirect
-# Unresolved reference issue with hospital.db and table names
-from hospitaldb.hospital_admin.forms import DepartmentForm
-from hospitaldb.hospital_admin.models import Department
-from hospitaldb.hospital_admin.models import DoctorForm
-from hospitaldb.hospital_admin.models import Doctor
-from hospitaldb.hospital_admin.models import PatientForm
-from hospitaldb.hospital_admin.models import Patient
-from hospitaldb.hospital_admin.models import AppointmentForm
-from hospitaldb.hospital_admin.models import Appointment
-from hospitaldb.hospital_admin.models import ProcedureForm
-from hospitaldb.hospital_admin.models import Procedure
-from hospitaldb.hospital_admin.models import ProcedureOrderForm
-from hospitaldb.hospital_admin.models import ProcedureOrder
+from .forms import DoctorForm
+from .models import Doctor
 
-def emp(request):
-    if request.method == 'POST':
-        form = DepartmentForm(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('/')
-            except:
-                pass #placeholder
-            else:
-                form = DepartmentForm()
-        return render(request, 'hospital_admin/department.html', {'form': form})
-    def show(request):
-        departments = Department.objects.all()
-        return render(request, 'hospital_admin/department.html', {'departments': departments})
-    def edit(request, id):
-        department = Department.objects.get(id=id)
-        return render(request, 'hospital_admin/edit_department.html', {'department': department})
-    def update(request, id):
-        department = Department.objects.get(id=id)
-        form = DepartmentForm(request.POST, instance=department)
+
+def index(request):
+    return render(request, 'index.html')
+
+def doctors(request):
+    doctorlist = Doctor.objects.all()
+    context = {'doctorlist': doctorlist}
+    return render(request, 'doctor/Doctors.html', context)
+
+def doctor_form(request):
+    if request.method == "GET":
+        form = DoctorForm()
+        return render(request, 'doctor/doctor_form.html',{'form':form})
+    else:
+        form = DoctorForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/show')
-        return render(request, 'hospital_admin/edit_department.html', {'department': department})
-    def delete(request, id):
-        department = Department.objects.get(id=id)
-        department.delete()
-        return redirect('/show')
-
-    # Test above first
-
-
+        else:
+            print("invalid")
+        return redirect('/doctors/')
