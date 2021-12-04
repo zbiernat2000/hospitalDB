@@ -15,10 +15,10 @@ class Doctor(models.Model):
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
     email = models.CharField(max_length=320)
-    phone_number = models.PositiveIntegerField(validators=[MinValueValidator(10000000000),
-                                                           MaxValueValidator(99999999999)])
-    pager_number = models.PositiveIntegerField(validators=[MinValueValidator(10000000000),
-                                                           MaxValueValidator(99999999999)])
+    phone_number = models.BigIntegerField(validators=[MinValueValidator(1000000000),
+                                                           MaxValueValidator(9999999999)])
+    pager_number = models.BigIntegerField(validators=[MinValueValidator(1000000000),
+                                                           MaxValueValidator(9999999999)])
     salary = models.PositiveIntegerField()
 
 
@@ -26,9 +26,9 @@ class Patient(models.Model):
     patientID = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
-    email = models.CharField(max_length=320)
-    phone_number = models.PositiveIntegerField(validators=[MinValueValidator(1000000000),
-                                                           MaxValueValidator(9999999999)])
+    email = models.CharField(max_length=100)
+    phone_number = models.BigIntegerField(validators=[MinValueValidator(100000000),
+                                                           MaxValueValidator(999999999)])
 
 
 class Appointment(models.Model):
