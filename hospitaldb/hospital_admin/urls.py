@@ -12,5 +12,7 @@ urlpatterns = [
     path('department_create/', views.department_form, name='department_create'),
     path('department_update/<int:id>/', views.department_form, name='department_update'),
     path('department_delete/<int:id>/', views.department_delete, name='department_delete'),
+    path('department_view/<int:id>/', views.department_view, name='department_view'),
+
 
 ]

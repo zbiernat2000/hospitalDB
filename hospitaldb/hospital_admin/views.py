@@ -72,3 +72,12 @@ def department_form(request, id=0):
         else:
             print("invalid")
         return redirect('/department/')
+
+
+def department_view(request,id):
+    department = Department.objects.get(pk=id)
+    doctorlist = Doctor.objects.filter(departmentID=id)
+
+    context = {'doctorlist': doctorlist,
+               'department': department}
+    return render(request, 'department/view_department.html', context)

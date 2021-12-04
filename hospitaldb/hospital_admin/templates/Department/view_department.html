@@ -1,0 +1,59 @@
+<ul xmlns="http://www.w3.org/1999/html">
+    <table>
+        <tr>
+            <th> ID</th>
+            <th> Name</th>
+            <th> Budget</th>
+            <th> Size</th>
+        </tr>
+        </thead>
+        <tr>
+            <td> {{ department.departmentID}}</td>
+            <td> {{ department.departmentName}}</td>
+            <td> {{ department.budget}}</td>
+            <td> {{ department.size}}</td>
+        </tr>
+    </table>
+    <table>
+    <tr>
+        <th> ID</th>
+        <th> First Name</th>
+        <th> Last Name</th>
+        <th> Email</th>
+        <th> Phone Number</th>
+        <th> Pager Number</th>
+        <th> Salary</th>
+        <th> Update</th>
+        <th> Delete</th>
+        <th> View</th>
+
+    </tr>
+    </thead>
+    {% for doctor in doctorlist %}
+    <tr>
+        <td> {{ doctor.doctorID}}</td>
+        <td> {{ doctor.first_name}}</td>
+        <td> {{ doctor.last_name}}</td>
+        <td> {{ doctor.email}}</td>
+        <td> {{ doctor.phone_number}}</td>
+        <td> {{ doctor.pager_number}}</td>
+        <td> {{ doctor.salary}}</td>
+        <td><a href="{% url 'doctor_update' doctor.doctorID %}">
+            <button> Update</button>
+        </a></td>
+        <!---TODO fix button placement ---->
+        <td><form action="{% url 'doctor_delete' doctor.doctorID %}" method="post">
+            {% csrf_token %}
+            <button type="submit"> Delete</button>
+        </form></td>
+        <td>
+            <button> View</button>
+        </td>
+
+    </tr>
+    {% endfor %}
+    </table>
+</ul>
+<td><a href="{% url 'department'%}">
+    <button> Back</button>
+</a>

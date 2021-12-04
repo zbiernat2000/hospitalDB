@@ -22,7 +22,7 @@
                 {% csrf_token %}
                 <button type="submit"> Delete</button>
             </form></td>
-            <td>
+            <td><a href="{% url 'department_view' department.departmentID %}">
                 <button> View</button>
             </td>
 
