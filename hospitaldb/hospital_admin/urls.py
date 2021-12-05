@@ -23,5 +23,14 @@ urlpatterns = [
     path('appointment_update/<int:id>/', views.appointment_form, name='appointment_update'),
     path('appointment_delete/<int:id>/', views.appointment_delete, name='appointment_delete'),
     path('appointment_view/<int:id>/', views.appointment_view, name='appointment_view'),
-
+    path('procedure/', views.procedure, name='procedure'),
+    path('procedure_create/', views.procedure_form, name='procedure_create'),
+    path('procedure_update/<int:id>/', views.procedure_form, name='procedure_update'),
+    path('procedure_delete/<int:id>/', views.procedure_delete, name='procedure_delete'),
+    path('procedure_view/<int:id>/', views.procedure_view, name='procedure_view'),
+    path('procedureOrder/', views.procedureOrder, name='procedureOrder'),
+    path('procedureOrder_create/', views.procedureOrder_form, name='procedureOrder_create'),
+    path('procedureOrder_update/<int:id>/', views.procedureOrder_form, name='procedureOrder_update'),
+    path('procedureOrder_delete/<int:id>/', views.procedureOrder_delete, name='procedureOrder_delete'),
+    path('procedureOrder_view/<int:id>/', views.procedureOrder_view, name='procedureOrder_view'),
 ]

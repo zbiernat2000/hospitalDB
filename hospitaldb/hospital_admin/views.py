@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import DoctorForm, DepartmentForm, PatientForm, AppointmentForm
-from .models import Doctor, Department, Patient, Appointment
+from .forms import DoctorForm, DepartmentForm, PatientForm, AppointmentForm, ProcedureForm, ProcedureOrderForm
+from .models import Doctor, Department, Patient, Appointment, Procedure, ProcedureOrder
+
 
 
 def index(request):
@@ -152,4 +153,72 @@ def appointment_form(request, id=0):
            print("invalid")
        return redirect('/appointment/')
 
+def procedure(request):
+   procedurelist = Procedure.objects.all()
+   context = {'procedurelist': procedurelist}
+   return render(request, 'procedure/Procedure.html', context)
 
+
+def procedure_delete(request, id):
+   procedure = Procedure.objects.get(pk=id)
+   procedure.delete()
+   return redirect('/procedure/')
+
+def procedure_form(request, id=0):
+   if request.method == "GET":
+       if id == 0:
+           form = ProcedureForm()
+       else:
+           procedure = Procedure.objects.get(pk=id)
+           form = ProcedureForm(instance=procedure)
+       return render(request, 'doctor/doctor_form.html', {'form': form})
+   else:
+       if id == 0:
+           form = ProcedureForm(request.POST)
+       else:
+           procedure = Procedure.objects.get(pk=id)
+           form = ProcedureForm(request.POST, instance=procedure)
+       if form.is_valid():
+           form.save()
+       else:
+           print("invalid")
+       return redirect('/procedure/')
+
+def procedure_view(request,id):
+    pass
+
+def procedureOrder(request):
+   procedureOrderlist = ProcedureOrder.objects.all()
+   context = {'procedureOrderlist': procedureOrderlist}
+   return render(request, 'procedureOrder/ProcedureOrder.html', context)
+
+
+def procedureOrder_delete(request, id):
+   procedureOrder = ProcedureOrder.objects.get(pk=id)
+   procedureOrder.delete()
+   return redirect('/procedureOrder/')
+
+
+def procedureOrder_form(request, id=0):
+   if request.method == "GET":
+       if id == 0:
+           form = ProcedureOrderForm()
+       else:
+           procedureOrder = ProcedureOrder.objects.get(pk=id)
+           form = ProcedureOrderForm(instance=procedureOrder)
+       return render(request, 'doctor/doctor_form.html', {'form': form})
+   else:
+       if id == 0:
+           form = ProcedureOrderForm(request.POST)
+       else:
+           procedureOrder = ProcedureOrder.objects.get(pk=id)
+           form = ProcedureOrderForm(request.POST, instance=procedureOrder)
+       if form.is_valid():
+           form.save()
+       else:
+           print("invalid")
+       return redirect('/procedureOrder/')
+
+
+def procedureOrder_view(request,id):
+    pass

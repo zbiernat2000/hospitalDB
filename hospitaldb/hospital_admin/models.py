@@ -47,5 +47,3 @@ class ProcedureOrder(models.Model):
     procedure_orderID = models.AutoField(primary_key=True)
     appointmentID = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     procedureID = models.ForeignKey(Procedure, on_delete=models.CASCADE)
-
-#test
