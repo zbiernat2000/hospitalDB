@@ -1,0 +1,43 @@
+<ul>
+    <table>
+        <tr>
+
+            <th> ID</th>
+            <th> Name</th>
+            <th> Update</th>
+            <th> Delete</th>
+            <th> View</th>
+
+
+        </tr>
+        </thead>
+        {% for procedure in procedurelist %}
+        <tr>
+            <td> {{ procedure.procedureID}}</td>
+            <td> {{ procedure.procedure_name}}</td>
+
+            <td><a href="{% url 'procedure_update' procedure.procedureID %}">
+                <button> Update</button>
+            </a></td>
+            <!---TODO fix button placement ---->
+            <td>
+                <form action="{% url 'procedure_delete' procedure.procedureID %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit"> Delete</button>
+                </form>
+            </td>
+            <td><a href="{% url 'procedure_view' procedure.procedureID %}">
+                <button> View</button>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</ul>
+<td><a href="{% url 'procedure_create' %}">
+    <button> Create</button>
+</a>
+<td><a href="{% url 'index'%}">
+    <button> Back</button>
+</a>
+

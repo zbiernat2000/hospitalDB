@@ -27,15 +27,15 @@ class Patient(models.Model):
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
     email = models.CharField(max_length=100)
-    phone_number = models.BigIntegerField(validators=[MinValueValidator(100000000),
-                                                           MaxValueValidator(999999999)])
+    phone_number = models.BigIntegerField(validators=[MinValueValidator(1000000000),
+                                                           MaxValueValidator(9999999999)])
 
 
 class Appointment(models.Model):
     appointmentID = models.AutoField(primary_key=True)
     doctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     patientID = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    date = models.DateField
+    date = models.CharField(max_length=10)
 
 
 class Procedure(models.Model):
@@ -47,5 +47,3 @@ class ProcedureOrder(models.Model):
     procedure_orderID = models.AutoField(primary_key=True)
     appointmentID = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     procedureID = models.ForeignKey(Procedure, on_delete=models.CASCADE)
-
-#test

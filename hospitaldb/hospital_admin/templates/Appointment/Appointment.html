@@ -1,0 +1,46 @@
+<ul>
+    <table>
+        <tr>
+
+            <th> ID</th>
+            <th> Doctor Last Name</th>
+            <th> Patient Last Name</th>
+            <th> Date of Appointment</th>
+            <th> Update</th>
+            <th> Delete</th>
+            <th> View</th>
+
+        </tr>
+        </thead>
+        {% for appointment in appointmentlist %}
+        <tr>
+            <td> {{ appointment.appointmentID}}</td>
+            <td> {{ appointment.doctorID.last_name}}</td>
+            <td> {{ appointment.patientID.last_name}}</td>
+            <td> {{ appointment.date}}</td>
+
+            <td><a href="{% url 'appointment_update' appointment.appointmentID %}">
+                <button> Update</button>
+            </a></td>
+            <!---TODO fix button placement ---->
+            <td>
+                <form action="{% url 'appointment_delete' appointment.appointmentID %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit"> Delete</button>
+                </form>
+            </td>
+            <td><a href="{% url 'appointment_view' appointment.appointmentID %}">
+                <button> View</button>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</ul>
+<td><a href="{% url 'appointment_create' %}">
+    <button> Create</button>
+</a>
+<td><a href="{% url 'index'%}">
+    <button> Back</button>
+</a>
+
