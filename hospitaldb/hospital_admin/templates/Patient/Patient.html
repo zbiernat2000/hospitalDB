@@ -9,7 +9,6 @@
             <th> Phone Number</th>
             <th> Update</th>
             <th> Delete</th>
-            <th> View</th>
 
 
         </tr>
@@ -31,9 +30,6 @@
                     {% csrf_token %}
                     <button type="submit"> Delete</button>
                 </form>
-            </td>
-            <td><a href="{% url 'patient_view' patient.patientID %}">
-                <button> View</button>
             </td>
 
         </tr>

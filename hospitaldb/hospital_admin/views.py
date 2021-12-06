@@ -41,6 +41,13 @@ def doctor_delete(request, id):
     doctor.delete()
     return redirect('/doctors/')
 
+def doctor_view(request,id):
+    doctor = Doctor.objects.get(pk=id)
+    appointmentlist = Appointment.objects.filter(doctorID=id)
+
+    context = {'appointmentlist': appointmentlist,
+               'doctor': doctor}
+    return render(request, 'doctor/view_doctor.html', context)
 
 def department(request):
     departmentlist = Department.objects.all()
@@ -83,9 +90,6 @@ def department_view(request,id):
                'department': department}
     return render(request, 'department/view_department.html', context)
 
-def patient_view(request,id):
-    pass
-
 def patient(request):
    patientlist = Patient.objects.all()
    context = {'patientlist': patientlist}
@@ -119,7 +123,12 @@ def patient_form(request, id=0):
        return redirect('/patient/')
 
 def appointment_view(request,id=0):
-    pass
+    appointment = Appointment.objects.get(pk=id)
+    ProcedureOrderlist = ProcedureOrder.objects.filter(appointmentID=id)
+    print(ProcedureOrderlist)
+    context = {'ProcedureOrderlist': ProcedureOrderlist,
+               'appointment': appointment}
+    return render(request, 'appointment/view_appointment.html', context)
 
 def appointment(request):
    appointmentlist = Appointment.objects.all()
@@ -185,7 +194,13 @@ def procedure_form(request, id=0):
        return redirect('/procedure/')
 
 def procedure_view(request,id):
-    pass
+    procedure = Procedure.objects.get(pk=id)
+    ProcedureOrderlist = ProcedureOrder.objects.filter(procedureID=id)
+    print(ProcedureOrderlist)
+    context = {'ProcedureOrderlist': ProcedureOrderlist,
+               'appointment': appointment}
+    return render(request, 'procedure/view_procedure.html', context)
+
 
 def procedureOrder(request):
    procedureOrderlist = ProcedureOrder.objects.all()
@@ -218,7 +233,3 @@ def procedureOrder_form(request, id=0):
        else:
            print("invalid")
        return redirect('/procedureOrder/')
-
-
-def procedureOrder_view(request,id):
-    pass

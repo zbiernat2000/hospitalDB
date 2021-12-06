@@ -1,0 +1,39 @@
+<ul xmlns="http://www.w3.org/1999/html">
+
+
+    <table>
+        <tr>
+
+            <th> ID</th>
+            <th> Date</th>
+            <th> Type</th>
+            <th> Create</th>
+            <th> Delete</th>
+
+        </tr>
+        </thead>
+        {% for procedureOrder in ProcedureOrderlist %}
+        <tr>
+            <td> {{ procedureOrder.procedure_orderID}}</td>
+            <td> {{ procedureOrder.appointmentID.date}}</td>
+            <td> {{ procedureOrder.procedureID.procedure_name}}</td>
+
+            <td><a href="{% url 'procedureOrder_update' procedureOrder.procedure_orderID %}">
+                <button> Update</button>
+            </a></td>
+            <!---TODO fix button placement ---->
+            <td>
+                <form action="{% url 'procedureOrder_delete' procedureOrder.procedure_orderID %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit"> Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</ul>
+
+
+<td><a href="{% url 'procedure'%}">
+    <button> Back</button>
+</a>

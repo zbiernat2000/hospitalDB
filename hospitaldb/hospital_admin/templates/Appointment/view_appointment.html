@@ -1,5 +1,5 @@
-<ul>
-    <table>
+<ul xmlns="http://www.w3.org/1999/html">
+<table>
         <tr>
 
             <th> ID</th>
@@ -12,34 +12,47 @@
 
         </tr>
         </thead>
-        {% for appointment in appointmentlist %}
         <tr>
             <td> {{ appointment.appointmentID}}</td>
             <td> {{ appointment.doctorID.last_name}}</td>
             <td> {{ appointment.patientID.last_name}}</td>
             <td> {{ appointment.date}}</td>
+        </tr>>
+    </table>
 
-            <td><a href="{% url 'appointment_update' appointment.appointmentID %}">
+    <table>
+        <tr>
+
+            <th> ID</th>
+            <th> Date</th>
+            <th> Type</th>
+            <th> Create</th>
+            <th> Delete</th>
+
+        </tr>
+        </thead>
+        {% for procedureOrder in ProcedureOrderlist %}
+        <tr>
+            <td> {{ procedureOrder.procedure_orderID}}</td>
+            <td> {{ procedureOrder.appointmentID.date}}</td>
+            <td> {{ procedureOrder.procedureID.procedure_name}}</td>
+
+            <td><a href="{% url 'procedureOrder_update' procedureOrder.procedure_orderID %}">
                 <button> Update</button>
             </a></td>
             <!---TODO fix button placement ---->
             <td>
-                <form action="{% url 'appointment_delete' appointment.appointmentID %}" method="post">
+                <form action="{% url 'procedureOrder_delete' procedureOrder.procedure_orderID %}" method="post">
                     {% csrf_token %}
                     <button type="submit"> Delete</button>
                 </form>
             </td>
-            <td><a href="{% url 'appointment_view' appointment.appointmentID %}">
-                <button> View</button></td>
-
         </tr>
         {% endfor %}
     </table>
 </ul>
-<td><a href="{% url 'appointment_create' %}">
-    <button> Create</button>
-</a>
-<td><a href="{% url 'index'%}">
+
+
+<td><a href="{% url 'appointment'%}">
     <button> Back</button>
 </a>
-
